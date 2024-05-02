@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<robot name="fyp_bot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<!-- Definations -->
+	<xacro:property name="base_radius" value="0.095"/>
+	<xacro:property name="base_thickness" value="0.001"/>
+	<xacro:property name="lidar_radius" value="0.03"/>
+	<xacro:property name="lidar_height" value="0.03"/>
+	<xacro:property name="imu_length" value="0.02"/>
+	<xacro:property name="imu_breadth" value="0.01"/>
+	<xacro:property name="imu_height" value="0.001"/>
+	<xacro:property name="imu_xoff" value="0.04"/>
+
+	<!-- Robot Definition -->
+	<link name="base_link">
+		<visual>
+			<geometry>
+				<cylinder radius="${base_radius}" length="${base_thickness}"/>
+			</geometry>
+			<material name="Gray">
+				<color rgba="0.5 0.5 0.5 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="base_footprint"/>
+
+	<joint name="base_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="base_footprint"/>
+		<origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+	</joint>
+
+	<link name="imu_link">
+		<visual>
+			<geometry>
+				<box size="${imu_length} ${imu_breadth} ${imu_height}"/>
+			</geometry>
+			<material name="Green">
+				<color rgba="0.0 1.0 0.0 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<joint name="imu_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="imu_link"/>
+		<origin xyz="${imu_xoff} 0.0 ${(base_thickness+(imu_height/2))}" rpy="0 0 0"/>
+	</joint>
+
+	<link name="laser_link">
+		<visual>
+			<geometry>
+				<cylinder radius="${lidar_radius}" length="${lidar_height}"/>
+			</geometry>
+			<material name="Blue">
+				<color rgba="0.0 0.0 1.0 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<joint name="laser_joint" type="fixed">
+		<parent link="base_link"/>
+		<child link="laser_link"/>
+		<origin xyz="0.0 0.0 ${(base_thickness+(lidar_height/2))}" rpy="0 0 0"/>
+	</joint>
+</robot>
