@@ -86,8 +86,8 @@ def generate_launch_description():
                 'laser_scan_topic' : '/bot2/scan',
                 'odom_topic' : '/bot2/odom_rf2o',
                 'publish_tf' : True,
-                'base_frame_id' : '/bot2/base_link',
-                'odom_frame_id' : '/bot2/odom',
+                'base_frame_id' : 'bot2/base_link',
+                'odom_frame_id' : 'bot2/odom',
                 'init_pose_from_topic' : '',
                 'freq' : 20.0}],
     )
@@ -101,8 +101,8 @@ def generate_launch_description():
                 'laser_scan_topic' : '/bot1/scan',
                 'odom_topic' : '/bot1/odom_rf2o',
                 'publish_tf' : True,
-                'base_frame_id' : '/bot1/base_link',
-                'odom_frame_id' : '/bot1/odom',
+                'base_frame_id' : 'bot1/base_link',
+                'odom_frame_id' : 'bot1/odom',
                 'init_pose_from_topic' : '',
                 'freq' : 20.0}],
     )

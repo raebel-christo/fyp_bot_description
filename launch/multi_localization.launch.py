@@ -25,14 +25,15 @@ from nav2_common.launch import RewrittenYaml
 
 def generate_launch_description():
     # Get the launch directory
-    bringup_dir = get_package_share_directory('nav2_bringup')
-
+    #bringup_dir = get_package_share_directory('nav2_bringup')
+    project_dir = get_package_share_directory('fyp_bot_description')
     namespace = LaunchConfiguration('namespace')
     map_yaml_file = LaunchConfiguration('map')
-    use_sim_time = LaunchConfiguration('use_sim_time')
+    use_sim_time = LaunchConfiguration('use_siodom"m_time')
     autostart = LaunchConfiguration('autostart')
-    params_file = LaunchConfiguration('params_file')
-    lifecycle_nodes = ['map_server', 'amcl']
+    params_file_1 = LaunchConfiguration('params_file_1')
+    params_file_2 = LaunchConfiguration('params_file_2')
+    lifecycle_nodes = ['map_server', 'bot1/amcl', 'bot2/amcl']
 
     # Map fully qualified names to relative ones so the node's namespace can be prepended.
     # In case of the transforms (tf), currently, there doesn't seem to be a better alternative
@@ -64,7 +65,7 @@ def generate_launch_description():
 
         DeclareLaunchArgument(
             'map',
-            default_value=os.path.join(bringup_dir, 'maps', 'turtlebot3_world.yaml'),
+            default_value=os.path.join(project_dir, 'maps', 'LabRoom.yaml'),
             description='Full path to map yaml file to load'),
 
         DeclareLaunchArgument(
@@ -72,12 +73,16 @@ def generate_launch_description():
             description='Use simulation (Gazebo) clock if true'),
 
         DeclareLaunchArgument(
-            'autostart', default_value='true',
+            'autostart', default_value='false',
             description='Automatically startup the nav2 stack'),
 
         DeclareLaunchArgument(
-            'params_file',
-            default_value=os.path.join(bringup_dir, 'params', 'nav2_params.yaml'),
+            'params_file_1',
+            default_value=os.path.join(project_dir, 'params', 'nav2_params_bot1.yaml'),
+            description='Full path to the ROS2 parameters file to use'),
+        DeclareLaunchArgument(
+            'params_file_2',
+            default_value=os.path.join(project_dir, 'params', 'nav2_params_bot2.yaml'),
             description='Full path to the ROS2 parameters file to use'),
 
         Node(
@@ -85,7 +90,10 @@ def generate_launch_description():
             executable='map_server',
             name='map_server',
             output='screen',
-            parameters=[configured_params],
+            parameters=[{
+                'use_sim_time': False,
+                'yaml_filename': map_yaml_file,
+            }],
             remappings=remappings),
 
         Node(
@@ -94,7 +102,7 @@ def generate_launch_description():
             executable='amcl',
             name='amcl',
             output='screen',
-            parameters=[configured_params],
+            parameters=[params_file_1],
             remappings=remappings),
         
         Node(
@@ -103,7 +111,7 @@ def generate_launch_description():
             executable='amcl',
             name='amcl',
             output='screen',
-            parameters=[configured_params],
+            parameters=[params_file_2],
             remappings=remappings),
 
         Node(
@@ -113,5 +121,6 @@ def generate_launch_description():
             output='screen',
             parameters=[{'use_sim_time': use_sim_time},
                         {'autostart': autostart},
+                        {'bond_timeout': 0.0},
                         {'node_names': lifecycle_nodes}])
     ])
