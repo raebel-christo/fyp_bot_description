@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot name="fyp_bot" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="bot2/fyp_bot" xmlns:xacro="http://ros.org/wiki/xacro">
 
 	<!-- Definations -->
 	<xacro:property name="base_radius" value="0.095"/>
