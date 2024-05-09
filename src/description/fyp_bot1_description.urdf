@@ -6,10 +6,7 @@
 	<xacro:property name="base_thickness" value="0.001"/>
 	<xacro:property name="lidar_radius" value="0.03"/>
 	<xacro:property name="lidar_height" value="0.03"/>
-	<xacro:property name="imu_length" value="0.02"/>
-	<xacro:property name="imu_breadth" value="0.01"/>
-	<xacro:property name="imu_height" value="0.001"/>
-	<xacro:property name="imu_xoff" value="0.04"/>
+	<xacro:property name="spacer_height" value="0.05"/>
 
 	<!-- Robot Definition -->
 	<link name="bot1/base_link">
@@ -17,8 +14,8 @@
 			<geometry>
 				<cylinder radius="${base_radius}" length="${base_thickness}"/>
 			</geometry>
-			<material name="Green">
-				<color rgba="0.0 0.5 0.0 1.0"/>
+			<material name="Gray">
+				<color rgba="0.5 0.5 0.5 1.0"/>
 			</material>
 		</visual>
 	</link>
@@ -45,6 +42,40 @@
 	<joint name="laser_joint" type="fixed">
 		<parent link="bot1/base_link"/>
 		<child link="bot1/laser_link"/>
-		<origin xyz="0.0 0.0 ${(base_thickness+(lidar_height/2))}" rpy="0 0 0"/>
+		<origin xyz="0.0 0.0 ${((spacer_height*2)+base_thickness+(lidar_height/2))}" rpy="0 0 0"/>
+	</joint>
+
+	<link name="bot1/middle_link">
+		<visual>
+			<geometry>
+				<cylinder radius="${base_radius}" length="${base_thickness}"/>
+			</geometry>
+			<material name="Gray">
+				<color rgba="0.5 0.5 0.5 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<link name="bot1/top_link">
+		<visual>
+			<geometry>
+				<cylinder radius="${base_radius}" length="${base_thickness}"/>
+			</geometry>
+			<material name="Gray">
+				<color rgba="0.5 0.5 0.5 1.0"/>
+			</material>
+		</visual>
+	</link>
+
+	<joint name="middle_joint" type="fixed">
+		<parent link="bot1/base_link"/>
+		<child link="bot1/middle_link"/>
+		<origin xyz="0.0 0.0 ${spacer_height}" rpy="0 0 0"/>
+	</joint>
+
+	<joint name="top_joint" type="fixed">
+		<parent link="bot1/middle_link"/>
+		<child link="bot1/top_link"/>
+		<origin xyz="0.0 0.0 ${spacer_height}" rpy="0 0 0"/>
 	</joint>
 </robot>

@@ -34,7 +34,7 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Alpha: 0.6000000238418579
+    - Alpha: 0.800000011920929
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
       Description File: ""
@@ -44,7 +44,7 @@ Visualization Manager:
         Durability Policy: Volatile
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /bot2/robot_description
+        Value: bot2/robot_description
       Enabled: true
       Links:
         All Links Enabled: true
@@ -52,16 +52,26 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        bot1/base_footprint:
+        bot2/base_footprint:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        bot1/base_link:
+        bot2/base_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        bot1/laser_link:
+        bot2/laser_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        bot2/middle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        bot2/top_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -82,9 +92,23 @@ Visualization Manager:
           Value: true
         bot1/laser_link:
           Value: true
+        bot1/middle_link:
+          Value: true
+        bot1/top_link:
+          Value: true
+        bot2/base_footprint:
+          Value: true
+        bot2/base_link:
+          Value: true
+        bot2/laser_link:
+          Value: true
+        bot2/middle_link:
+          Value: true
+        bot2/top_link:
+          Value: true
       Marker Scale: 0.30000001192092896
       Name: TF
-      Show Arrows: true
+      Show Arrows: false
       Show Axes: true
       Show Names: true
       Tree:
@@ -93,6 +117,17 @@ Visualization Manager:
             {}
           bot1/laser_link:
             {}
+          bot1/middle_link:
+            bot1/top_link:
+              {}
+          bot2/base_link:
+            bot2/base_footprint:
+              {}
+            bot2/laser_link:
+              {}
+            bot2/middle_link:
+              bot2/top_link:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 0.699999988079071
@@ -148,7 +183,7 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-    - Alpha: 0.6000000238418579
+    - Alpha: 0.800000011920929
       Class: rviz_default_plugins/RobotModel
       Collision Enabled: false
       Description File: ""
@@ -180,6 +215,16 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        bot1/middle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        bot1/top_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: RobotModel
       TF Prefix: ""
       Update Interval: 0
@@ -188,7 +233,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: bot1/base_link
+    Fixed Frame: bot1/base_footprint
     Frame Rate: 30
   Name: root
   Tools:
@@ -206,25 +251,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 0.6983937621116638
+      Distance: 1.2778022289276123
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.002638101577758789
-        Y: 0.010078728199005127
-        Z: 0.03565645217895508
+        X: 0.1688365340232849
+        Y: 0.004337940365076065
+        Z: -0.028119469061493874
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.7567526698112488
+      Pitch: 0.5517526865005493
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.19278305768966675
+      Yaw: 0.7427809834480286
     Saved: ~
 Window Geometry:
   Displays:
